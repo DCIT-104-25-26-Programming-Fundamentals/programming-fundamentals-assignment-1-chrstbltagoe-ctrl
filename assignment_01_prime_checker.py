@@ -31,18 +31,6 @@
 # - The main block must call the function and print the result.
 #
 
-# =============================================================================
-# YOUR CODE BELOW — remove the # symbols from the scaffold and fill it in
-# =============================================================================
-# =============================================================================
-# PROGRAMMING FUNDAMENTALS — Assignment 1
-# Topic: Conditional Logic, Loops, and Functions
-# =============================================================================
-#
-# TASK: Prime Number Checker
-#
-# =============================================================================
-
 def is_prime(n):
     """
     Checks whether a given number n is prime.
