@@ -38,4 +38,63 @@
 # =============================================================================
 # YOUR CODE BELOW — remove the # symbols from the scaffold and fill it in
 # =============================================================================
+def calculate_sum(numbers):
+    """Calculates the total sum of all numbers using a loop."""
+    total = 0
+    for num in numbers:
+        total += num
+        return total 
 
+def calculate_average(numbers):
+    """Calculates the average of the numbers."""
+
+    if len(numbers) == 0:
+        return 0.0
+
+    total = calculate_sum(numbers) 
+    return total / len(numbers)  
+
+def find_maximum(numbers):
+    """Finds the largest number using a loop."""
+
+    max_val = numbers[0] 
+    for num in numbers:
+        if num > max_val:
+            max_val = num
+    return max_val
+
+def find_minimum(numbers):
+    """Finds the smallest number using a loop."""
+
+    min_val = numbers[0] 
+    for num in numbers:
+        if num < min_val:
+            min_val = num
+    return min_val
+
+def main():
+
+    count = int(input("How many numbers? ")) 
+
+    if count <= 0:
+        print("Error: Number of element must be greater than 0.")
+        return
+
+    numbers_list = []  
+    for i in range(1, count + 1):
+        num = float(input(f"Enter number {i}: "))
+        numbers_list.append(num) 
+
+    total_sum = calculate_sum(numbers_list)   
+    avg = calculate_average(numbers_list) 
+    maximum = find_maximum(numbers_list) 
+    minimum = find_minimum(numbers_list)  
+
+    print("\nResults:")    
+    print(f"Sum:      {total_sum}") 
+    print(f"Average:  {avg}")
+    print(f"Maximum:  {maximum}") 
+    print(f"Minimum:  {minimum}") 
+
+    if __name__ == "__main__":
+        main()             
