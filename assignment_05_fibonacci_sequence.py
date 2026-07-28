@@ -3,7 +3,7 @@
 # Topic: Loops, Sequences, and Functions
 # =============================================================================
 #
-# TASK: Fibonacci Sequence Generator
+# TASK: git stat
 #
 # The Fibonacci sequence is a series of numbers where each number is the sum
 # of the two numbers before it:
