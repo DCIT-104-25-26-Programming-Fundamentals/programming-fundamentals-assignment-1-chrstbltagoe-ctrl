@@ -32,32 +32,21 @@
 #
 
 def is_prime(n):
-    """
-    Checks whether a given number n is prime.
-    Returns True if n is prime, False otherwise.
-    """
-    # Numbers less than 2 are never prime
+    """Return True if n is a prime number, False otherwise."""
     if n < 2:
         return False
-
-    # Check for divisors from 2 up to the square root of n
-    # (if n has a divisor larger than its square root, it must
-    # also have a matching one smaller than the square root,
-    # so we don't need to check beyond that point)
     for i in range(2, int(n ** 0.5) + 1):
         if n % i == 0:
             return False
-
     return True
 
 
 def main():
-    number = int(input("Enter a number: "))
-
-    if is_prime(number):
-        print(f"{number} is a prime number.")
+    num = int(input("Enter a number: "))
+    if is_prime(num):
+        print(f"{num} is a prime number.")
     else:
-        print(f"{number} is NOT a prime number.")
+        print(f"{num} is NOT a prime number.")
 
 
 if __name__ == "__main__":
