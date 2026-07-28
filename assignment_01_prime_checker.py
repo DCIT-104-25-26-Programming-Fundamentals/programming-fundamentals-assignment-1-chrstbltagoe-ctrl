@@ -34,4 +34,43 @@
 # =============================================================================
 # YOUR CODE BELOW — remove the # symbols from the scaffold and fill it in
 # =============================================================================
+# =============================================================================
+# PROGRAMMING FUNDAMENTALS — Assignment 1
+# Topic: Conditional Logic, Loops, and Functions
+# =============================================================================
+#
+# TASK: Prime Number Checker
+#
+# =============================================================================
 
+def is_prime(n):
+    """
+    Checks whether a given number n is prime.
+    Returns True if n is prime, False otherwise.
+    """
+    # Numbers less than 2 are never prime
+    if n < 2:
+        return False
+
+    # Check for divisors from 2 up to the square root of n
+    # (if n has a divisor larger than its square root, it must
+    # also have a matching one smaller than the square root,
+    # so we don't need to check beyond that point)
+    for i in range(2, int(n ** 0.5) + 1):
+        if n % i == 0:
+            return False
+
+    return True
+
+
+def main():
+    number = int(input("Enter a number: "))
+
+    if is_prime(number):
+        print(f"{number} is a prime number.")
+    else:
+        print(f"{number} is NOT a prime number.")
+
+
+if __name__ == "__main__":
+    main()
