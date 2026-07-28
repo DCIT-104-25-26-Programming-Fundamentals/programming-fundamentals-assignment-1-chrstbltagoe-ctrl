@@ -90,3 +90,133 @@
 # YOUR CODE BELOW — remove the # symbols from the scaffold and fill it in
 # =============================================================================
 
+
+# =============================================================================
+# PROGRAMMING FUNDAMENTALS — Assignment 8
+# Topic: Lists of Dictionaries, Loops, and Functions
+# =============================================================================
+#
+# TASK: Student Record Management System
+# =============================================================================
+
+
+def add_student(students):
+    """Ask for name, ID, and scores, then save the student record."""
+    name = input("Student name: ")
+    id_input = input("Student ID: ")
+
+    if not id_input.isdigit():
+        print("Error: student ID must be a number.")
+        return
+
+    student_id = int(id_input)
+
+    # Prevent duplicate IDs
+    for student in students:
+        if student["id"] == student_id:
+            print(f"Error: a student with ID {student_id} already exists.")
+            return
+
+    count_input = input("How many scores? ")
+    if not count_input.isdigit() or int(count_input) <= 0:
+        print("Error: number of scores must be a positive integer.")
+        return
+
+    num_scores = int(count_input)
+
+    scores = []
+    for i in range(1, num_scores + 1):
+        score_input = input(f"Enter score {i}: ")
+        try:
+            score = float(score_input)
+        except ValueError:
+            print(f"Error: '{score_input}' is not a valid score. Student not added.")
+            return
+        scores.append(score)
+
+    student = {
+        "name": name,
+        "id": student_id,
+        "scores": scores
+    }
+    students.append(student)
+    print(f'Student "{name}" added successfully.')
+
+
+def calculate_average(scores):
+    """Return the average of a list of scores, rounded to 2 decimal places."""
+    return round(sum(scores) / len(scores), 2)
+
+
+def display_all_students(students):
+    """Print a formatted table of all students with their scores and average."""
+    if not students:
+        print("No students have been added yet.")
+        return
+
+    print("-" * 50)
+    print(f"{'Name':<15}{'ID':<12}{'Scores':<15}{'Average':<10}")
+    print("-" * 50)
+
+    for student in students:
+        scores_str = ", ".join(str(int(s)) if s.is_integer() else str(s) for s in student["scores"])
+        avg = calculate_average(student["scores"])
+        print(f"{student['name']:<15}{student['id']:<12}{scores_str:<15}{avg:<10}")
+
+    print("-" * 50)
+
+
+def calculate_student_average(students):
+    """Ask for a student ID and display that student's average score."""
+    id_input = input("Enter student ID: ")
+
+    if not id_input.isdigit():
+        print("Error: please enter a valid student ID.")
+        return
+
+    student_id = int(id_input)
+
+    for student in students:
+        if student["id"] == student_id:
+            avg = calculate_average(student["scores"])
+            print(f"{student['name']}'s average score: {avg}")
+            return
+
+    print(f"Error: no student found with ID {student_id}.")
+
+
+def show_menu():
+    """Print the menu options."""
+    print("================================")
+    print("   STUDENT RECORD SYSTEM MENU")
+    print("================================")
+    print("1. Add student")
+    print("2. Display all students")
+    print("3. Calculate average score")
+    print("4. Quit")
+
+
+def main():
+    students = []
+
+    while True:
+        show_menu()
+        choice = input("Enter your choice (1-4): ")
+
+        if choice == "1":
+            add_student(students)
+        elif choice == "2":
+            display_all_students(students)
+        elif choice == "3":
+            calculate_student_average(students)
+        elif choice == "4":
+            print("Goodbye!")
+            break
+        else:
+            print("Error: please enter a number between 1 and 4.")
+
+        print()  # blank line for readability between menu cycles
+
+
+if __name__ == "__main__":
+    main()

@@ -67,4 +67,123 @@
 # =============================================================================
 # YOUR CODE BELOW — remove the # symbols from the scaffold and fill it in
 # =============================================================================
+# =============================================================================
+# PROGRAMMING FUNDAMENTALS — Assignment 9
+# =============================================================================
+#
+# TASK: Console-Based Simple Calculator
+# =============================================================================
 
+
+def add(a, b):
+    """Return the sum of a and b."""
+    return a + b
+
+
+def subtract(a, b):
+    """Return the difference of a and b."""
+    return a - b
+
+
+def multiply(a, b):
+    """Return the product of a and b."""
+    return a * b
+
+
+def divide(a, b):
+    """Return a divided by b, rounded to 2 decimal places.
+    Raises ZeroDivisionError if b is 0, to be caught by the caller."""
+    if b == 0:
+        raise ZeroDivisionError("Cannot divide by zero.")
+    return round(a / b, 2)
+
+
+def modulus(a, b):
+    """Return the remainder of a divided by b."""
+    if b == 0:
+        raise ZeroDivisionError("Cannot divide by zero.")
+    return a % b
+
+
+def exponentiate(a, b):
+    """Return a raised to the power of b."""
+    return a ** b
+
+
+def get_two_numbers():
+    """Prompt the user for two numbers and return them as floats.
+    Returns None if the input is invalid."""
+    first_input = input("Enter first number : ")
+    second_input = input("Enter second number: ")
+
+    try:
+        first = float(first_input)
+        second = float(second_input)
+        return first, second
+    except ValueError:
+        print("Error: please enter valid numbers.")
+        return None
+
+
+def format_number(n):
+    """Display whole-number floats without a trailing .0 (e.g. 13 instead of 13.0)."""
+    return str(int(n)) if n == int(n) else str(n)
+
+
+def show_menu():
+    """Print the calculator menu."""
+    print("============================")
+    print("     SIMPLE CALCULATOR")
+    print("============================")
+    print("1. Addition")
+    print("2. Subtraction")
+    print("3. Multiplication")
+    print("4. Division")
+    print("5. Modulus")
+    print("6. Exponentiation")
+    print("7. Quit")
+
+
+def main():
+    operations = {
+        "1": ("+", add),
+        "2": ("-", subtract),
+        "3": ("*", multiply),
+        "4": ("/", divide),
+        "5": ("%", modulus),
+        "6": ("**", exponentiate),
+    }
+
+    while True:
+        show_menu()
+        choice = input("Select an operation (1-7): ")
+
+        if choice == "7":
+            print("Goodbye!")
+            break
+
+        if choice not in operations:
+            print("Error: please enter a number between 1 and 7.")
+            print()
+            continue
+
+        symbol, operation_func = operations[choice]
+
+        numbers = get_two_numbers()
+        if numbers is None:
+            print()
+            continue
+
+        first, second = numbers
+
+        try:
+            result = operation_func(first, second)
+            print(f"Result: {format_number(first)} {symbol} {format_number(second)} = {result}")
+        except ZeroDivisionError as e:
+            print(f"Error: {e}")
+
+        print()  # blank line for readability between menu cycles
+
+
+if __name__ == "__main__":
+    main()
